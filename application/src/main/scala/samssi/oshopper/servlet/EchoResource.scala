@@ -1,16 +1,9 @@
 package samssi.oshopper.servlet
 
-import org.scalatra.{Ok, ScalatraServlet}
-import org.scalatra.json.NativeJsonSupport
-import org.json4s.DefaultFormats
+import org.scalatra.Ok
 import samssi.oshopper.domain.echo.Echo
 
-class EchoResource extends ScalatraServlet with NativeJsonSupport {
-  implicit override val jsonFormats = DefaultFormats
-  before() {
-    contentType = formats("json")
-  }
-
+class EchoResource extends OshopperServletSupport {
   get("/ping") {
     Ok(Echo("pong"))
   }
