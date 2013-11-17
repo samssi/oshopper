@@ -1,7 +1,12 @@
-/**
- * Created with IntelliJ IDEA.
- * User: a121836
- * Date: 11/17/13
- * Time: 3:29 PM
- * To change this template use File | Settings | File Templates.
- */
+var echo = angular.module('echo', []);
+
+function echoController($scope, $http) {
+    $scope.init = function() {
+        $http.get("http://localhost:8080/oshopper/v1/echo/ping")
+            .success(function(data, status, headers, config) {
+                $scope.apiResponse = data.message;
+            }).error(function(data, status, headers, config) {
+                $scope.apiResponse = "No response from the API!"
+            });
+    }
+}

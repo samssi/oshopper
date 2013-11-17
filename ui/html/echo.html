@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Online Shopper - Rest echo</title>
+    <script type="text/javascript" src="../lib/angular-1.2.1.js"></script>
+    <script type="text/javascript" src="../js/echoapp.js"></script>
 </head>
-<body>
-
+<body ng-app="echo">
+    <div>Send ping request to rest backend</div>
+    <div ng-controller="echoController" ng-init="init()">Response was: {{apiResponse}}</div>
 </body>
 </html>
