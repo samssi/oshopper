@@ -1,4 +1,8 @@
 oshopper
 ========
 
-Testing mongodb
+Webshop exercise:
+* Scalatra
+* MongoDB
+* json4s
+* angular.js
