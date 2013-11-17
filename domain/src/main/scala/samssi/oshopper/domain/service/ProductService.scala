@@ -13,7 +13,6 @@ class ProductService extends DefaultJson {
     mongoRepository.insert(product.asJson)
   }
   def get(id: String): Product = {
-    //parse(mongoRepository.select(id)).extract[Product]
     ProductFactory.asSingleProduct(mongoRepository.select(id))
   }
 }
