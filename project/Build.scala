@@ -29,6 +29,7 @@ object MasterBuild extends Build {
       base = file("infrastructure"),
       settings = generalSettings ++ Seq(
         libraryDependencies ++= Seq(
+          "org.mongodb" %% "casbah" % "2.5.0"
         )
       )
     )
@@ -69,7 +70,9 @@ object MasterBuild extends Build {
         "org.slf4j" % "slf4j-log4j12" % "1.7.5",
         "org.specs2" %% "specs2" % "2.2.2" % "test",
         "org.json4s" %% "json4s-native" % "3.1.0",
-        "org.json4s"   %% "json4s-jackson" % "3.1.0"      )
+        "org.json4s"   %% "json4s-jackson" % "3.1.0",
+        "joda-time" % "joda-time" % "2.3"
+      )
     )
   }
 
