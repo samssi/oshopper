@@ -40,6 +40,7 @@ object MasterBuild extends Build {
       base = file("domain"),
       settings = generalSettings ++ Seq(
         libraryDependencies ++= Seq(
+          "net.databinder.dispatch" %% "dispatch-core" % "0.11.0"
         )
       )
     ).aggregate(infrastructure) dependsOn (infrastructure)
@@ -51,6 +52,10 @@ object MasterBuild extends Build {
       base = file("application"),
       settings = generalSettings ++ serverSettings ++ Seq(
         libraryDependencies ++= Seq(
+          "org.scalatra" %% "scalatra" % "2.2.1",
+          "org.scalatra" %% "scalatra-scalatest" % "2.2.1" % "test",
+          "org.scalatra" %% "scalatra-json" % "2.2.1",
+          "org.scalatra" %% "scalatra-swagger" % "2.2.1"
         )
       )
     ).aggregate(infrastructure, domain) dependsOn (infrastructure, domain)
@@ -59,21 +64,21 @@ object MasterBuild extends Build {
   lazy val generalSettings = {
     Defaults.defaultSettings ++ Seq(
       libraryDependencies ++= Seq(
-        "junit" % "junit" % "4.8.2" % "test",
-        "log4j" % "log4j" % "1.2.16",
-        "org.slf4j" % "slf4j-log4j12" % "1.7.2",
-        "org.specs2" %% "specs2" % "1.14" % "test"
-      )
+        "junit" % "junit" % "4.11" % "test",
+        "log4j" % "log4j" % "1.2.17",
+        "org.slf4j" % "slf4j-log4j12" % "1.7.5",
+        "org.specs2" %% "specs2" % "2.2.2" % "test",
+        "org.json4s" %% "json4s-native" % "3.1.0",
+        "org.json4s"   %% "json4s-jackson" % "3.1.0"      )
     )
   }
 
   lazy val serverSettings = {
     webSettings ++ Seq(
       libraryDependencies ++= Seq(
-        "org.eclipse.jetty" % "jetty-server" % "8.1.7.v20120910" % "test",
-        "org.eclipse.jetty" % "jetty-plus" % "8.1.7.v20120910" % "container",
-        "org.eclipse.jetty" % "jetty-webapp" % "9.0.2.v20130417" % "test",
-        "org.eclipse.jetty" % "jetty-servlets" % "9.0.2.v20130417" % "test",
+        "org.eclipse.jetty" % "jetty-server" % "8.1.13.v20130916" % "container",
+        "org.eclipse.jetty" % "jetty-webapp" % "8.1.13.v20130916" % "container",
+        "org.eclipse.jetty" % "jetty-servlets" % "8.1.13.v20130916" % "container",
         "org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016" % "provided" artifacts (Artifact("javax.servlet", "jar", "jar"))
       )
     ) ++ buildSettings
