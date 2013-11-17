@@ -1,7 +1,7 @@
 package samssi.oshopper.domain
 
-import org.json4s.native.Serialization._
 import org.bson.types.ObjectId
+import org.json4s.native.Serialization._
 
 trait MongoObject extends DefaultJson {
   def asJson: String = write(this)

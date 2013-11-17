@@ -1,22 +1,23 @@
 package samssi.oshopper.domain.service
 
-import samssi.oshopper.domain.Product
+import samssi.oshopper.domain.{DefaultJson, Product}
 import samssi.oshopper.repository.MongoRepository
 import org.bson.types.ObjectId
+import org.json4s.native.JsonMethods._
 
-class ProductService {
+class ProductService extends DefaultJson {
   val mongoRepository = new MongoRepository
   def add(product: Product) {
     mongoRepository.insert(product.asJson)
   }
-  def get(id: String): String = {
-    parse(mongoRepository.select(id))
+  def get(id: String): Product = {
+    parse(mongoRepository.select(id)).extract[Product]
   }
 }
 
 object HelloWorld {
   def main(args: Array[String]) {
     //new ProductService().add(Product(None, "Nice - Shoe", 12.3D, "EUR", 24.00D))
-    println(new ProductService().get("5288f09f0364a4456c0b26ab"))
+    println(new ProductService().get("5288f09f0364a4456c0b26ab")._id.getOrElse())
   }
 }
