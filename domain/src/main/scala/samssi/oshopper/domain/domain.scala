@@ -1,11 +1,10 @@
 package samssi.oshopper.domain
 
 import org.json4s.native.Serialization._
-import org.json4s.DefaultFormats
+import org.bson.types.ObjectId
 
-trait JsonSerializable {
-  implicit val jsonFormats = DefaultFormats
+trait MongoObject extends DefaultJson {
   def asJson: String = write(this)
 }
-case class ShoppingCart(items: List[Product]) extends JsonSerializable
-case class Product(id: Long, name: String, price: Double, currency: String, taxPercentage: Double) extends JsonSerializable
+case class ShoppingCart(items: List[Product]) extends MongoObject
+case class Product(_id: Option[ObjectId], name: String, price: Double, currency: String, taxPercentage: Double) extends MongoObject
