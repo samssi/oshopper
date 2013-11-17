@@ -8,15 +8,9 @@ import org.bson.types.ObjectId
 class MongoRepository {
   lazy val mongoUri = PropertiesUtil.getMongoUri
   lazy val centralClient = MongoClient(MongoClientURI(mongoUri))
+  val products = centralClient("central").getCollection("products")
 
-  def insert(product: String) {
-    val products = centralClient("central").getCollection("products")
-    val document = parse(product).asInstanceOf[DBObject]
-    products.insert(document)
-  }
-
-  def select(id: String) = {
-    val products = centralClient("central").getCollection("products")
-    products.findOne(ObjectId.massageToObjectId(id)).toString
-  }
+  def insert(product: String) { products.insert(parse(product).asInstanceOf[DBObject]) }
+  def select(id: String) = products.findOne(ObjectId.massageToObjectId(id)).toString
+  def getCategories = products.distinct("category").toString
 }

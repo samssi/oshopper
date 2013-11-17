@@ -4,5 +4,6 @@ import org.json4s.native.JsonMethods._
 import samssi.oshopper.domain.{DefaultJson, Product}
 
 object ProductFactory extends DefaultJson {
-  def asSingleProduct(dbCollection: String) = parse(dbCollection).extractOrElse[Product](throw new RuntimeException("Schema error"))
+  def asSingleProduct(json: String): Product = parse(json).extract[Product]
+  def asCategories(json: String) = parse(json).extract[List[String]]
 }
