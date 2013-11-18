@@ -2,10 +2,11 @@
    <head>
        <title>Online Shopper - Product view</title>
        <script type="text/javascript" src="../lib/angular-1.2.1.js"></script>
+       <script type="text/javascript" src="../js/productadmin.js"></script>
    </head>
    <body>
-        <div>
-            <form>
+        <div ng-app="productadmin">
+            <form ng-controller="productController">
                 <table>
                     <thead>
                         <tr>
@@ -18,12 +19,12 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><input type="text" id="name"></textfield></td>
-                            <td><input type="text"/></td>
-                            <td><input type="text"/></td>
-                            <td><input type="text"/></td>
-                            <td><input type="text"/></td>
-                            <td><input type="button" value="Add"/></td>
+                            <td><input type="text" ng-model="product.name"></textfield></td>
+                            <td><input type="text" ng-model="product.price"/></td>
+                            <td><input type="text" ng-model="product.currency"/></td>
+                            <td><input type="text" ng-model="product.taxpercentage"/></td>
+                            <td><input type="text" ng-model="product.category"/></td>
+                            <td><input ng-click="add()" type="button" value="Add"/></td>
                         </tr>
                     </tbody>
                 </table>
