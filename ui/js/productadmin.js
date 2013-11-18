@@ -1,4 +1,4 @@
-var echo = angular.module('productadmin', []);
+var productadmin = angular.module('productadmin', []);
 
 function productController($scope, $http) {
     $scope.add = function() {
