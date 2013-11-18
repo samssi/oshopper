@@ -14,3 +14,10 @@ When running the application on server you need to set -Dmongo.uri-parameter lik
 ``
 mongo.uri=PUT YOUR MONGODB URI HERE
 ``
+
+REST design rules
+
+GET = SELECT
+POST = INSERT
+PUT = UPDATE
+DELETE = DELETE
