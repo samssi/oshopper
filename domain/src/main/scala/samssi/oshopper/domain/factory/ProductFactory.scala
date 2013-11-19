@@ -1,7 +1,7 @@
 package samssi.oshopper.domain.factory
 
 import org.json4s.native.JsonMethods._
-import samssi.oshopper.domain.{DefaultJson, Product}
+import samssi.oshopper.domain.{ValidationException, DefaultJson, Product}
 
 object ProductFactory extends DefaultJson {
   def asSingleProduct(json: String): Product = parse(json).extract[Product]
