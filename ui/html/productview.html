@@ -2,11 +2,13 @@
    <head>
        <title>Online Shopper - Product view</title>
        <script type="text/javascript" src="../lib/angular-1.2.1.js"></script>
+       <script type="text/javascript" src="../lib/lodash-2.3.0.js"></script>
+       <script type="text/javascript" src="../lib/restangular-1.1.8.js"></script>
        <script type="text/javascript" src="../js/productadmin.js"></script>
    </head>
-   <body>
-        <div ng-app="productadmin">
-            <form ng-controller="productController">
+   <body ng-app="productadmin">
+        <div ng-controller="productController">
+            <form>
                 <table>
                     <thead>
                         <tr>
@@ -29,6 +31,7 @@
                     </tbody>
                 </table>
             </form>
+        <div><pre>{{product | json}}</pre></div>
         </div>
    </body>
 </html>

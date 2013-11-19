@@ -1,11 +1,9 @@
-var productadmin = angular.module('productadmin', []);
+var productadmin = angular.module('productadmin', ['restangular']);
 
-function productController($scope, $http) {
+function productController($scope, Restangular) {
     $scope.add = function() {
+        Restangular.oneUrl('root', 'http://localhost:8080/oshopper/v1/').post('products', $scope.product);
         console.log($scope.product);
-    }
-    $scope.updateModel = function() {
-
     }
     /*$scope.init = function() {
         $http.post("http://localhost:8080/oshopper/v1/products", json)

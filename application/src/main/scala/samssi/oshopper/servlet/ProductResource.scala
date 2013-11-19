@@ -6,6 +6,6 @@ class ProductResource extends OshopperServletSupport {
   }
 
   post("/") {
-    println("POST - Received: " + params)
+    println("POST - Received: " + request.body)
   }
 }
