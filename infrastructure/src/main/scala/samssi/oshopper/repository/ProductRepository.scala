@@ -5,13 +5,21 @@ import com.mongodb.casbah.MongoClientURI
 import com.mongodb.util.JSON._
 import org.bson.types.ObjectId
 
-class ProductRepository {
+trait CentralRepository {
   lazy val mongoUri = PropertiesUtil.getMongoUri
   lazy val centralClient = MongoClient(MongoClientURI(mongoUri))
-  val productsCollection = centralClient("central").getCollection("products")
-  
-  def insert(product: String) { productsCollection.insert(parse(product).asInstanceOf[DBObject]) }
-  def select(id: String) = productsCollection.findOne(ObjectId.massageToObjectId(id)).toString
-  def delete(id: String) = productsCollection.remove(DBObject("_id" -> ObjectId.massageToObjectId(id)))
-  def getCategories = productsCollection.distinct("category").toString
+  def collection(collection: String) = centralClient("central").getCollection(collection)
+}
+
+class ProductRepository extends CentralRepository {
+  def insert(json: String) { collection("products").insert(parse(json).asInstanceOf[DBObject]) }
+  def select(id: String) = collection("products").findOne(ObjectId.massageToObjectId(id)).toString
+  def delete(id: String) = collection("products").remove(DBObject("_id" -> ObjectId.massageToObjectId(id)))
+  def getCategories = collection("products").distinct("category").toString
+}
+
+class CustomerRepository extends CentralRepository {
+  def insert(json: String) { collection("customers").insert(parse(json).asInstanceOf[DBObject]) }
+  def select(id: String) = collection("customers").findOne(ObjectId.massageToObjectId(id)).toString
+  def delete(id: String) = collection("customers").remove(DBObject("_id" -> ObjectId.massageToObjectId(id)))
 }

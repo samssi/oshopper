@@ -8,3 +8,4 @@ trait JsonSerializable extends DefaultJson {
 }
 case class ShoppingCart(items: List[Product]) extends JsonSerializable
 case class Product(_id: Option[ObjectId], name: String, price: Double, currency: String, taxpercentage: Double, category: String) extends JsonSerializable
+case class Customer(_id: Option[ObjectId], firstname: String, lastname: String, email: String, phonenumber: String)
