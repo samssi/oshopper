@@ -23,7 +23,7 @@ When running the application on server you need to set -Dmongo.uri-parameter lik
 mongo.uri=PUT YOUR MONGODB URI HERE
 ``
 
-REST design rules
+## REST design rules ##
 
 GET = SELECT
 
