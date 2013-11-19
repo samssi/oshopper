@@ -6,6 +6,15 @@ Webshop exercise:
 * MongoDB
 * json4s
 * angular.js
+* 
+
+## Solution ##
+
+* angular.js acts as the UI framework
+* Scala case classes act as the schema for the DB
+* Scalatra acts as the REST framework
+* json4s is used for serialization within the REST domain
+* Database documents are written directly as JSON
 
 ## System parameters ##
 
