@@ -7,4 +7,4 @@ trait JsonSerializable extends DefaultJson {
   def asJson: String = write(this)
 }
 case class ShoppingCart(items: List[Product]) extends JsonSerializable
-case class Product(_id: Option[ObjectId], name: String, price: Double, currency: String, taxPercentage: Double, category: String) extends JsonSerializable
+case class Product(_id: Option[ObjectId], name: String, price: Double, currency: String, taxpercentage: Double, category: String) extends JsonSerializable

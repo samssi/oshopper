@@ -14,9 +14,8 @@ class ProductResource extends OshopperServletSupport {
 
   post("/") {
     println("POST - Received: " + request.body)
-    val result = Try(ProductFactory.asSingleProduct(request.body))
-    println(ProductFactory.asSingleProduct(request.body))
-    if (result.isSuccess) Ok
-    else BadRequest
+    val product = ProductFactory.asSingleProduct(request.body)
+    println(product)
+    productService.add(product)
   }
 }
