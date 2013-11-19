@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>Online Shopper - Product view</title>
+    <script type="text/javascript" src="../lib/angular-1.2.1.js"></script>
+    <script type="text/javascript" src="../lib/lodash-2.3.0.js"></script>
+    <script type="text/javascript" src="../lib/restangular-1.1.8.js"></script>
+    <script type="text/javascript" src="../js/customeradmin.js"></script>
+</head>
+<body ng-app="customeradmin">
+<div ng-controller="customerController">
+    <form>
+        <table>
+            <thead>
+            <tr>
+                <td>Firstname</td>
+                <td>Lastname</td>
+                <td>Email</td>
+                <td>Phonenumber</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type="text" ng-model="customer.firstname"></textfield></td>
+                <td><input type="text" ng-model="customer.lastname"/></td>
+                <td><input type="text" ng-model="customer.email"/></td>
+                <td><input type="text" ng-model="customer.phonenumber"/></td>
+                <td><input ng-click="add()" type="button" value="Add"/></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+    <div><pre>{{customer | json}}</pre></div>
+</div>
+</body>
+</html>
