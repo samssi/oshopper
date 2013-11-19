@@ -10,13 +10,13 @@ class ProductResource extends OshopperServletSupport {
   val productService: ProductService = new ProductService
 
   get("/") {
-    println("GET - Received: " + params)
+    logger.info("GET - Received: " + params)
   }
 
   post("/") {
-    println("POST - Received: " + request.body)
+    logger.info("POST - Received: " + request.body)
     val product = ProductFactory.asSingleProduct(request.body)
-    println(product)
+    logger.info(product)
     productService.add(product)
     Ok
   }
@@ -26,9 +26,9 @@ class CustomerResource extends OshopperServletSupport {
   val customerService: CustomerService = new CustomerService
 
   post("/") {
-    println("POST - Received: " + request.body)
+    logger.info("POST - Received: " + request.body)
     val customer = CustomerFactory.asSingleCustomer(request.body)
-    println(customer)
+    logger.info(customer)
     customerService.add(customer)
     Ok
   }
