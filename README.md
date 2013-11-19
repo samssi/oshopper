@@ -6,6 +6,7 @@ Webshop exercise:
 * MongoDB
 * json4s
 * angular.js
+* Restangular
 
 ## Solution ##
 
