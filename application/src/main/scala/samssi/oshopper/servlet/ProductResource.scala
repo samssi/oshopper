@@ -11,6 +11,7 @@ class ProductResource extends OshopperServletSupport {
 
   get("/") {
     logger.info("GET - Received: " + params)
+    Ok(productService.getAllProducts());
   }
 
   post("/") {

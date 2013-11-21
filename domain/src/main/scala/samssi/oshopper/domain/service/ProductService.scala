@@ -10,8 +10,11 @@ import samssi.oshopper.domain.factory.ProductFactory
 class ProductService extends DefaultJson {
   val productRepository = new ProductRepository
   def add(product: Product) { productRepository.insert(product.asJson) }
+
   def getProductBy(id: String): Product = ProductFactory.asSingleProduct(productRepository.select(id))
   def getAllCategories = ProductFactory.asCategories(productRepository.getCategories)
+  def getAllProducts(): List[Product] = ProductFactory.asListOfProducts(productRepository.getAllProducts)
+
   def removeProductBy(id: String) { productRepository.delete(id) }
 }
 

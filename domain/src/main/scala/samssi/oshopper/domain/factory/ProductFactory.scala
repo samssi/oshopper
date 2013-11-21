@@ -5,6 +5,7 @@ import samssi.oshopper.domain.{Customer, ValidationException, DefaultJson, Produ
 
 object ProductFactory extends DefaultJson {
   def asSingleProduct(json: String): Product = parse(json).extract[Product]
+  def asListOfProducts(json: String): List[Product] = parse(json).extract[List[Product]]
   def asCategories(json: String) = parse(json).extract[List[String]]
 }
 

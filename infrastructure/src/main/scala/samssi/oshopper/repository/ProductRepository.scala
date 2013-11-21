@@ -18,6 +18,7 @@ trait CentralRepository {
 class ProductRepository extends CentralRepository {
   def repositoryCollection = "products"
   def getCategories = fetchCollectionFromDb("products").distinct("category").toString
+  def getAllProducts = fetchCollectionFromDb("products").find().toArray.toString
 }
 
 class CustomerRepository extends CentralRepository {
