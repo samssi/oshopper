@@ -20,7 +20,7 @@ class ProductRepository extends CentralRepository {
   def repositoryCollection = "products"
   def getCategories = productsCollection.distinct("category").toString
   def getAllProducts = productsCollection.find().toArray.toString
-  def searchForProducts(searchWord: String) = productsCollection.find().toArray().toString
+  def searchForProducts(searchWord: String) = productsCollection.find(MongoDBObject("name" -> ("(?i)" + searchWord + "*").r)).toArray().toString
 }
 
 class CustomerRepository extends CentralRepository {
