@@ -18,18 +18,17 @@ trait CentralRepository {
 
 class ProductRepository extends CentralRepository with Logging {
   val productsCollection = fetchCollectionFromDb("products")
-  val ascendingNameSortingObject = MongoDBObject("name" -> 1)
 
   def repositoryCollection = "products"
 
   def getCategories = productsCollection.distinct("category").toString
 
-  def getAllProducts = productsCollection.find().sort(ascendingNameSortingObject).toArray.toString
+  def getAllProducts = productsCollection.find().toArray.toString
 
   def searchForProducts(searchWord: String) = {
     val queryStart = System.currentTimeMillis()
     val nameSearchingObject = MongoDBObject("name" -> ("(?i)" + searchWord + "*").r)
-    val result = productsCollection.find(nameSearchingObject).sort(ascendingNameSortingObject).toArray().toString
+    val result = productsCollection.find(nameSearchingObject).toArray().toString
     val queryStop = System.currentTimeMillis()
     logger.info("Query time: " + (queryStop - queryStart) + " (ms)")
     result
