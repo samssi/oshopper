@@ -19,7 +19,6 @@ trait CentralRepository extends Json4sSettings {
   def delete(id: String) = fetchCollectionFromDb(repositoryCollection).remove(DBObject("_id" -> ObjectId.massageToObjectId(id)))
   def flattenId(json: String) = {
     val result = json4sParse(json).transformField {
-      // TODO: Should $oid existence be checked?
       case("_id", x) => ("id", x \ "$oid")
     }
     write(result)
