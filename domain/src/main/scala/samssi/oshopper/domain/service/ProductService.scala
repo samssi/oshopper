@@ -13,10 +13,13 @@ class ProductService extends DefaultJson {
 
   def getProductBy(id: String): Product = ProductFactory.asSingleProduct(productRepository.select(id))
   def getAllCategories = ProductFactory.asCategories(productRepository.getCategories)
-  def getAllProducts(): List[Product] = ProductFactory.asListOfProducts(productRepository.getAllProducts).sortWith(_.name.toLowerCase < _.name.toLowerCase)
-  def searchForProduct(searchWord: String) = ProductFactory.asListOfProducts(productRepository.searchForProducts(searchWord)).sortWith(_.name.toLowerCase < _.name.toLowerCase)
+  def getAllProducts(): List[Product] = sortByName(ProductFactory.asListOfProducts(productRepository.getAllProducts))
+
+  def searchForProduct(searchWord: String) = sortByName(ProductFactory.asListOfProducts(productRepository.searchForProducts(searchWord)))
 
   def removeProductBy(id: String) { productRepository.delete(id) }
+
+  private def sortByName(products: List[Product]) = products.sortWith(_.name.toLowerCase < _.name.toLowerCase)
 }
 
 class CustomerService extends DefaultJson {
