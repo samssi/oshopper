@@ -3,14 +3,14 @@
 <head>
     <title>Webshop</title>
     <script type="text/javascript" src="../lib/angular-1.2.1.js"></script>
-    <script type="text/javascript" src="../lib/angular-ui-utils-0.0.4.js"></script>
+    <script type="text/javascript" src="../lib/ui-utils-0.0.4.js"></script>
     <script type="text/javascript" src="../lib/lodash-2.3.0.js"></script>
     <script type="text/javascript" src="../lib/restangular-1.1.8.js"></script>
     <script type="text/javascript" src="../js/customer.js"></script>
 </head>
 <body ng-app="customer">
     <div class="searchPanel" ng-controller="searchPanelController">
-        <input type="text" ui-event="{ keyup : 'searchForProduct()'}"/>
+        Search: <input ng-model="searchword" ui-event="{keyup : 'searchForProduct()'}"/>
         <div>{{product.name}}</div>
     </div>
     <div>Following products are available</div>

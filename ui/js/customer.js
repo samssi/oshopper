@@ -1,12 +1,15 @@
-var customer = angular.module('customer', ['restangular']);
+var customer = angular.module('customer', ['restangular', 'ui.utils']);
 customer.config(function(RestangularProvider) {
         RestangularProvider.setBaseUrl('http://localhost:8080/oshopper/v1/');
     }
 )
 
-function searchPanelController($scope, Restangular) {
+function searchPanelController($scope) {
     $scope.searchForProduct = function() {
-        alert('jee');
+        var searchWord = $scope.searchword;
+        if (searchWord.length > 3) {
+            console.log('Searching for product starting with: ' + searchWord);
+        }
     }
 }
 
