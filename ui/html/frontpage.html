@@ -14,9 +14,12 @@
         <ul>
             <li ng-repeat="product in searchedProducts">{{product.name}} - {{product.price}} {{product.currency}}</li>
         </ul>
-        <div>Found: {{searchedProducts || json}}</div>
     </div>
-    <div>Following products are available</div>
-    <div ng-controller="productsController" ng-init="loadCampaignProducts()">{{ products || json }}</div>
+    <div ng-controller="productsController" ng-init="loadCampaignProducts()">
+        <h1>Campaign products</h1>
+        <ul>
+            <li ng-repeat="product in products">{{product.name}} - {{product.price}} {{product.currency}}</li>
+        </ul>
+    </div>
 </body>
 </html>
