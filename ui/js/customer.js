@@ -13,6 +13,9 @@ function searchPanelController($scope, Restangular) {
                 $scope.searchedProducts = productList;
             });
         }
+        else {
+            $scope.searchedProducts = '';
+        }
     }
 }
 
