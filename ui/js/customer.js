@@ -21,7 +21,7 @@ function searchPanelController($scope, Restangular) {
 
 
 function productsController($scope, Restangular) {
-    $scope.loadProducts = function() {
+    $scope.loadCampaignProducts = function() {
         Restangular.one('products').get().then(function(apiResponse) {
             $scope.products = apiResponse;
         });
