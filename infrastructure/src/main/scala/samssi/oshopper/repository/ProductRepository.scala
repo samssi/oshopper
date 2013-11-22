@@ -4,9 +4,12 @@ import com.mongodb.casbah.Imports._
 import com.mongodb.casbah.MongoClientURI
 import com.mongodb.util.JSON._
 import org.bson.types.ObjectId
-import samssi.oshopper.general.Logging
+import samssi.oshopper.general.{Json4sSettings, Logging}
+import org.json4s.native.JsonMethods.{parse => json4sParse}
+import org.json4s.native.Serialization._
+import com.mongodb.util.JSON.parse
 
-trait CentralRepository {
+trait CentralRepository extends Json4sSettings {
   lazy val mongoUri = PropertiesUtil.getMongoUri
   lazy val centralClient = MongoClient(MongoClientURI(mongoUri))
   def repositoryCollection: String
@@ -14,6 +17,13 @@ trait CentralRepository {
   def insert(json: String) { fetchCollectionFromDb(repositoryCollection).insert(parse(json).asInstanceOf[DBObject]) }
   def select(id: String) = fetchCollectionFromDb(repositoryCollection).findOne(ObjectId.massageToObjectId(id)).toString
   def delete(id: String) = fetchCollectionFromDb(repositoryCollection).remove(DBObject("_id" -> ObjectId.massageToObjectId(id)))
+  def flattenId(json: String) = {
+    val result = json4sParse(json).transformField {
+      // TODO: Should $oid existence be checked?
+      case("_id", x) => ("id", x \ "$oid")
+    }
+    write(result)
+  }
 }
 
 class ProductRepository extends CentralRepository with Logging {
@@ -21,9 +31,9 @@ class ProductRepository extends CentralRepository with Logging {
 
   def repositoryCollection = "products"
 
-  def getCategories = productsCollection.distinct("category").toString
+  def getCategories = flattenId(productsCollection.distinct("category").toString)
 
-  def getAllProducts = productsCollection.find().toArray.toString
+  def getAllProducts = flattenId(productsCollection.find().toArray.toString)
 
   def searchForProducts(searchWord: String) = {
     val queryStart = System.currentTimeMillis()
@@ -31,7 +41,7 @@ class ProductRepository extends CentralRepository with Logging {
     val result = productsCollection.find(nameSearchingObject).toArray().toString
     val queryStop = System.currentTimeMillis()
     logger.info("Query time: " + (queryStop - queryStart) + " (ms)")
-    result
+    flattenId(result)
   }
 }
 

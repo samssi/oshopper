@@ -1,13 +1,14 @@
 package samssi.oshopper.domain.service
 
-import samssi.oshopper.domain.{Customer, DefaultJson, Product}
+import samssi.oshopper.domain.{Customer, Product}
 import samssi.oshopper.repository.{CustomerRepository, ProductRepository}
 import org.bson.types.ObjectId
 import org.json4s.native.JsonMethods._
 import com.mongodb.DBCollection
 import samssi.oshopper.domain.factory.ProductFactory
+import samssi.oshopper.general.Json4sSettings
 
-class ProductService extends DefaultJson {
+class ProductService extends Json4sSettings {
   val productRepository = new ProductRepository
   def add(product: Product) { productRepository.insert(product.asJson) }
 
@@ -22,7 +23,7 @@ class ProductService extends DefaultJson {
   private def sortByName(products: List[Product]) = products.sortWith(_.name.toLowerCase < _.name.toLowerCase)
 }
 
-class CustomerService extends DefaultJson {
+class CustomerService extends Json4sSettings {
   val customerRepository = new CustomerRepository
   def add(customer: Customer) { customerRepository.insert(customer.asJson) }
 }

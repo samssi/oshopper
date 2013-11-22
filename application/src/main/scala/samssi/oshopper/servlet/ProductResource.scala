@@ -2,9 +2,11 @@ package samssi.oshopper.servlet
 
 import samssi.oshopper.domain.factory.{CustomerFactory, ProductFactory}
 import samssi.oshopper.domain.service.{CustomerService, ProductService}
+import samssi.oshopper.domain.Product
 import org.scalatra.{BadRequest, Ok}
 import scala.util.Try
 import samssi.oshopper.domain.ValidationException
+import org.json4s.native.Serialization._
 
 class ProductResource extends OshopperServletSupport {
   val productService: ProductService = new ProductService
@@ -14,10 +16,10 @@ class ProductResource extends OshopperServletSupport {
     params.get("searchword") match {
       case Some(searchWord) => {
         val products: List[Product] = productService.searchForProduct(searchWord)
-        logger.info("Searching for: " + searchWord + " found: " + products);
+        logger.info("Searching for: " + searchWord + " found: " + products)
         Ok(products)
       }
-      case None => Ok(productService.getAllProducts());
+      case None => Ok(productService.getAllProducts())
     }
   }
 
