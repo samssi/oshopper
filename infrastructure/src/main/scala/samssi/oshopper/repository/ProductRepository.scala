@@ -16,9 +16,11 @@ trait CentralRepository {
 }
 
 class ProductRepository extends CentralRepository {
+  val productsCollection = fetchCollectionFromDb("products")
   def repositoryCollection = "products"
-  def getCategories = fetchCollectionFromDb("products").distinct("category").toString
-  def getAllProducts = fetchCollectionFromDb("products").find().toArray.toString
+  def getCategories = productsCollection.distinct("category").toString
+  def getAllProducts = productsCollection.find().toArray.toString
+  def searchForProducts(searchWord: String) = productsCollection.find().toArray().toString
 }
 
 class CustomerRepository extends CentralRepository {

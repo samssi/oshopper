@@ -14,6 +14,7 @@ class ProductService extends DefaultJson {
   def getProductBy(id: String): Product = ProductFactory.asSingleProduct(productRepository.select(id))
   def getAllCategories = ProductFactory.asCategories(productRepository.getCategories)
   def getAllProducts(): List[Product] = ProductFactory.asListOfProducts(productRepository.getAllProducts)
+  def searchForProduct(searchWord: String) = ProductFactory.asListOfProducts(productRepository.searchForProducts(searchWord))
 
   def removeProductBy(id: String) { productRepository.delete(id) }
 }
