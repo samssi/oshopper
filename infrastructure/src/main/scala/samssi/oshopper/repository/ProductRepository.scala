@@ -17,7 +17,7 @@ trait CentralRepository extends Json4sSettings {
   def insert(json: String) { fetchCollectionFromDb(repositoryCollection).insert(parse(json).asInstanceOf[DBObject]) }
   def select(id: String) = fetchCollectionFromDb(repositoryCollection).findOne(ObjectId.massageToObjectId(id)).toString
   def delete(id: String) = fetchCollectionFromDb(repositoryCollection).remove(DBObject("_id" -> ObjectId.massageToObjectId(id)))
-  def flattenId(json: String) = {
+  def withFlattenedId(json: String) = {
     val result = json4sParse(json).transformField {
       case("_id", x) => ("id", x \ "$oid")
     }
@@ -30,9 +30,9 @@ class ProductRepository extends CentralRepository with Logging {
 
   def repositoryCollection = "products"
 
-  def getCategories = flattenId(productsCollection.distinct("category").toString)
+  def getCategories = withFlattenedId(productsCollection.distinct("category").toString)
 
-  def getAllProducts = flattenId(productsCollection.find().toArray.toString)
+  def getAllProducts = withFlattenedId(productsCollection.find().toArray.toString)
 
   def searchForProducts(searchWord: String) = {
     val queryStart = System.currentTimeMillis()
@@ -40,7 +40,7 @@ class ProductRepository extends CentralRepository with Logging {
     val result = productsCollection.find(nameSearchingObject).toArray().toString
     val queryStop = System.currentTimeMillis()
     logger.info("Query time: " + (queryStop - queryStart) + " (ms)")
-    flattenId(result)
+    withFlattenedId(result)
   }
 }
 
