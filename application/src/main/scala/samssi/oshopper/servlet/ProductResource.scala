@@ -11,7 +11,10 @@ class ProductResource extends OshopperServletSupport {
 
   get("/") {
     logger.info("GET - Received: " + params)
-    Ok(productService.getAllProducts());
+    params.get("searchword") match {
+      case Some(searchWord) => { logger.info("Searching for: " + searchWord); Ok }
+      case None => Ok(productService.getAllProducts());
+    }
   }
 
   post("/") {
