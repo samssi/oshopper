@@ -4,6 +4,7 @@ import com.mongodb.casbah.Imports._
 import com.mongodb.casbah.MongoClientURI
 import com.mongodb.util.JSON._
 import org.bson.types.ObjectId
+import samssi.oshopper.general.Logging
 
 trait CentralRepository {
   lazy val mongoUri = PropertiesUtil.getMongoUri
@@ -15,12 +16,18 @@ trait CentralRepository {
   def delete(id: String) = fetchCollectionFromDb(repositoryCollection).remove(DBObject("_id" -> ObjectId.massageToObjectId(id)))
 }
 
-class ProductRepository extends CentralRepository {
+class ProductRepository extends CentralRepository with Logging {
   val productsCollection = fetchCollectionFromDb("products")
   def repositoryCollection = "products"
   def getCategories = productsCollection.distinct("category").toString
   def getAllProducts = productsCollection.find().toArray.toString
-  def searchForProducts(searchWord: String) = productsCollection.find(MongoDBObject("name" -> ("(?i)" + searchWord + "*").r)).toArray().toString
+  def searchForProducts(searchWord: String) = {
+    val queryStart = System.currentTimeMillis()
+    val result = productsCollection.find(MongoDBObject("name" -> ("(?i)" + searchWord + "*").r)).toArray().toString
+    val queryStop = System.currentTimeMillis()
+    logger.info("Query time: " + (queryStop - queryStart) + " (ms)")
+    result
+  }
 }
 
 class CustomerRepository extends CentralRepository {
