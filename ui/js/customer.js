@@ -4,6 +4,13 @@ customer.config(function(RestangularProvider) {
     }
 )
 
+function searchPanelController($scope, Restangular) {
+    $scope.searchForProduct = function() {
+        alert('jee');
+    }
+}
+
+
 function productsController($scope, Restangular) {
     $scope.loadProducts = function() {
         Restangular.one('products').get().then(function(apiResponse) {
