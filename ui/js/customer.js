@@ -5,17 +5,25 @@ customer.config(function(RestangularProvider) {
 )
 
 function searchPanelController($scope, Restangular) {
-    $scope.searchForProduct = function() {
+    $scope.searchForProduct = function($event) {
         var searchWord = $scope.searchword;
-        if (searchWord.length > 3) {
+        var escKeyCode = 27;
+        if ($event.keyCode == escKeyCode) {
+            $scope.resetSearch();
+        }
+        else if (searchWord.length > 3) {
             console.log('Searching for product starting with: ' + searchWord);
             Restangular.one('products').get({searchword: searchWord}).then(function(productList) {
                 $scope.searchedProducts = productList;
             });
         }
         else {
-            $scope.searchedProducts = '';
+            $scope.resetSearch();
         }
+    }
+
+    $scope.resetSearch = function() {
+        $scope.searchedProducts = '';
     }
 }
 

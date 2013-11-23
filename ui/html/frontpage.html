@@ -11,10 +11,12 @@
 </head>
 <body ng-app="customer">
     <div class="searchPanel" ng-controller="searchPanelController">
-        Search: <input ng-model="searchword" ui-event="{keyup : 'searchForProduct()', blur : 'resetSearch()'}"/>
-        <ul>
-            <li ng-repeat="product in searchedProducts">({{product.id}}) {{product.name}} - {{product.price}} {{product.currency}}</li>
-        </ul>
+        <div>
+            <input ng-model="searchword" ui-event="{keyup : 'searchForProduct($event)'}"/>
+            <ul>
+                <li ng-repeat="product in searchedProducts">({{product.id}}) {{product.name}} - {{product.price}} {{product.currency}}</li>
+            </ul>
+        </div>
     </div>
     <div ng-controller="productsController" ng-init="loadCampaignProducts()">
         <h1>Campaign products</h1>
