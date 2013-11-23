@@ -32,6 +32,11 @@ function searchPanelController($scope, Restangular) {
         }
     }
 
+    $scope.selectProduct = function(name) {
+        $scope.searchword = name;
+        $scope.resetSearch();
+    }
+
     $scope.resetSearch = function() {
         $scope.searchedProducts = '';
     }
