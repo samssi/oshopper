@@ -6,9 +6,19 @@ customer.config(function(RestangularProvider) {
 
 function searchPanelController($scope, Restangular) {
     $scope.searchForProduct = function($event) {
+        console.log($event);
         var searchWord = $scope.searchword;
         var escKeyCode = 27;
         if ($event.keyCode == escKeyCode) {
+            $scope.resetSearch();
+        }
+        else if ($event.keyIdentifier === 'Down') {
+            console.log('down')
+        }
+        else if ($event.keyIdentifier === 'Up') {
+            console.log('up')
+        }
+        else if ($event.keyCode == escKeyCode) {
             $scope.resetSearch();
         }
         else if (searchWord.length > 3) {
