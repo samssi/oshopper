@@ -11,7 +11,7 @@
 </head>
 <body ng-app="customer">
     <div class="searchPanel" ng-controller="searchPanelController">
-        Search: <input ng-model="searchword" ui-event="{keyup : 'searchForProduct()'}"/>
+        Search: <input ng-model="searchword" ui-event="{keyup : 'searchForProduct()', blur : 'resetSearch()'}"/>
         <ul>
             <li ng-repeat="product in searchedProducts">({{product.id}}) {{product.name}} - {{product.price}} {{product.currency}}</li>
         </ul>

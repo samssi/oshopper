@@ -16,3 +16,8 @@ li {
     overflow: hidden;
     width: 100%;
 }
+
+li:hover {
+    background-color: #3875d7;
+    color: #fff;
+}
