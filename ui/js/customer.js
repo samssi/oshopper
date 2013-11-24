@@ -75,5 +75,9 @@ customer.controller('productsController', function($scope, Restangular) {
     $scope.addToCart = function(product) {
         $scope.shoppingCart.push(product);
     }
+
+    $scope.order = function() {
+        Restangular.one('orders').post('', $scope.shoppingCart);
+    }
 });
 

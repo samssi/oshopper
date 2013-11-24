@@ -27,7 +27,7 @@
                 <li ng-repeat="product in products" value="{{product.id}}">({{product.id}}) {{product.name}} - {{product.price}} {{product.currency}}&nbsp;<a href="#" ui-event="{click: 'addToCart(product)'}"> Add to cart</a></li>
             </ul>
         </div>
-        <div>Items in cart: {{shoppingCart.length}}</div><a href="#" ui-event="{click: order(shoppingCart)}">Order</a>
+        <div>Items in cart: {{shoppingCart.length}}&nbsp;<a href="#" ui-event="{click: 'order(shoppingCart)'}">Order</a></div>
     </div>
 </body>
 </html>

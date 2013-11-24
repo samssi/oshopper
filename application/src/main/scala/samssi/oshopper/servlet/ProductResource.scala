@@ -43,3 +43,9 @@ class CustomerResource extends OshopperServletSupport {
     Ok
   }
 }
+
+class OrderResource extends OshopperServletSupport {
+  post("/") {
+    logger.info("Received shopping cart: " + request.body)
+  }
+}
