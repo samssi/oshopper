@@ -1,6 +1,7 @@
 var customer = angular.module('customer', ['restangular', 'ui.utils']);
 customer.config(function(RestangularProvider) {
         RestangularProvider.setBaseUrl('http://localhost:8080/oshopper/v1/');
+        RestangularProvider.setOnElemRestangularized(false);
     }
 )
 
@@ -77,6 +78,7 @@ customer.controller('productsController', function($scope, Restangular) {
     }
 
     $scope.order = function() {
+        console.log($scope.shoppingCart);
         Restangular.one('orders').post('', $scope.shoppingCart).then(function() {$scope.shoppingCart = []});
     }
 });

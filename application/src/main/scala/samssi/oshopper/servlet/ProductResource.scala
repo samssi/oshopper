@@ -1,6 +1,6 @@
 package samssi.oshopper.servlet
 
-import samssi.oshopper.domain.factory.{CustomerFactory, ProductFactory}
+import samssi.oshopper.domain.factory.{ShoppingCartFactory, CustomerFactory, ProductFactory}
 import samssi.oshopper.domain.service.{CustomerService, ProductService}
 import samssi.oshopper.domain.Product
 import org.scalatra.{BadRequest, Ok}
@@ -46,7 +46,9 @@ class CustomerResource extends OshopperServletSupport {
 
 class OrderResource extends OshopperServletSupport {
   post("/") {
-    logger.info("Received shopping cart: " + request.body)
+    println(request.body)
+    //val shoppingCart = ShoppingCartFactory.asShoppingCart(request.body)
+    //logger.info("POST - Received shopping cart: " + shoppingCart)
     Ok
   }
 }
