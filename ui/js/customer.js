@@ -73,9 +73,7 @@ customer.controller('productsController', function($scope, Restangular) {
     }
 
     $scope.addToCart = function(product) {
-        console.log(product);
         $scope.shoppingCart.push(product);
-        console.log($scope.shoppingCart);
     }
 });
 
