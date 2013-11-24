@@ -77,7 +77,7 @@ customer.controller('productsController', function($scope, Restangular) {
     }
 
     $scope.order = function() {
-        Restangular.one('orders').post('', $scope.shoppingCart);
+        Restangular.one('orders').post('', $scope.shoppingCart).then(function() {$scope.shoppingCart = []});
     }
 });
 
