@@ -10,4 +10,5 @@ trait JsonSerializable extends Json4sSettings {
 }
 case class ShoppingCart(items: List[Product]) extends JsonSerializable
 case class Product(id: Option[String], name: String, price: Double, currency: String, taxpercentage: Double, category: String) extends JsonSerializable
+
 case class Customer(id: Option[String], firstname: String, lastname: String, email: String, phonenumber: String) extends  JsonSerializable

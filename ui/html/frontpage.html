@@ -10,21 +10,24 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body ng-app="customer">
-    <div class="searchPanel" ng-controller="searchPanelController">
+    <div ng-controller="searchPanelController">
         <div>
             <input ng-model="searchword" ui-event="{keyup : 'searchForProduct($event)'}"/>
         </div>
         <div>
-            <ul>
-                <li ng-repeat="product in searchedProducts" id="{{product.id}}" ui-event="{click: 'selectProduct(product.name)'}">{{product.name}} - {{product.price}} {{product.currency}}</li>
+            <ul class="searchresults">
+                <li class="searchresults" ng-repeat="product in searchedProducts" id="{{product.id}}" ui-event="{click: 'selectProduct(product.name)'}">{{product.name}} - {{product.price}} {{product.currency}}</li>
             </ul>
         </div>
     </div>
     <div ng-controller="productsController" ng-init="loadCampaignProducts()">
-        <h1>Campaign products</h1>
-        <ul>
-            <li ng-repeat="product in products" value="{{product.id}}">({{product.id}}) {{product.name}} - {{product.price}} {{product.currency}}</li>
-        </ul>
+        <div>
+            <h1>Campaign products</h1>
+            <ul>
+                <li ng-repeat="product in products" value="{{product.id}}">({{product.id}}) {{product.name}} - {{product.price}} {{product.currency}}&nbsp;<a href="#" ui-event="{click: 'addToCart(product)'}"> Add to cart</a></li>
+            </ul>
+        </div>
+        <div>Items in cart: {{shoppingCart.length}}</div>
     </div>
 </body>
 </html>

@@ -2,7 +2,7 @@ input {
 
 }
 
-ul {
+ul.searchresults {
     position: absolute;
     overflow: hidden;
     background-color: #fff;
@@ -14,14 +14,14 @@ ul {
     color: #333;
 }
 
-li {
+li.searchresults {
     display: block;
     padding: .3em .5em .3em .3em;
     overflow: hidden;
     width: 100%;
 }
 
-li:hover {
+li:hover.searchresults {
     background-color: #3875d7;
     color: #fff;
 }
