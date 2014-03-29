@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body ng-app="customer">
+<div class="center">
     <div ng-controller="searchPanelController">
         <div>
             <input ng-model="searchword" ui-event="{keyup : 'searchForProduct($event)'}"/>
@@ -29,5 +30,6 @@
         </div>
         <div>Items in cart: {{shoppingCart.length}}&nbsp;<a href="#" ui-event="{click: 'order(shoppingCart)'}">Order</a></div>
     </div>
+</div>
 </body>
 </html>
