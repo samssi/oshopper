@@ -15,10 +15,12 @@ customer.controller('searchPanelController', function($scope, Restangular) {
         if ($event.keyCode == escKeyCode) {
             $scope.resetSearch();
         }
-        else if ($event.keyIdentifier === 'Down') {
+        // Down
+        else if ($event.keyCode === 40) {
             $scope.moveCursorDown();
         }
-        else if ($event.keyIdentifier === 'Up') {
+        // Up
+        else if ($event.keyCode === 38) {
             $scope.moveCursorUp();
         }
         else if ($event.keyCode == escKeyCode) {
